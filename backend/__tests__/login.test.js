@@ -17,7 +17,18 @@ describe('Testing POST /api/login', () => {
       .expect('json', { message: 'Campos inválidos' });
   });
 
-  it('Verify if when inserted correct data, return a token with 16 random characters', async () => {
+  it('Verify if when called without data, return status code 400 with JSON { message: "Campos inválidos" }', async () => {
+    await frisby.post(`${URL}api/login`, {
+      body: {
+        email: "",
+        password: ""
+      }
+    })
+      .expect('status', 400)
+      .expect('json', { message: 'Campos inválidos' });
+  });
+
+  it('Verify if when inserted correct format data, return a token with 168 random characters', async () => {
     await frisby.post(`${URL}api/login`, {
       body: {
         email: 'example@example.com',
