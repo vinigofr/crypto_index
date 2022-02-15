@@ -8,4 +8,4 @@ app.use(express.json());
 
 app.use('/helloworld', helloWorldRoutes);
 
-app.listen(4000, () => console.log(`Server open on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server open on port ${PORT}`));
