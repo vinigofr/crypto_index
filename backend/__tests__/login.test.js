@@ -1,3 +1,4 @@
+require('dotenv').config();
 const frisby = require('frisby');
 const jwt = require('jsonwebtoken');
 const URL = 'http://localhost:4000/';
@@ -29,8 +30,11 @@ describe('Testing POST /api/login', () => {
       const result = JSON.parse(body);
       const { token } = result;
 
-      expect(token.length).toBe(16);
-      expect(jwt.verify(token, JWT_SECRET)).toBe(true)
+      expect(token.length).toBe(168);
+      expect(jwt.verify(token, JWT_SECRET, (err) => {
+        if(err) return false
+        return true
+      })).toBe(true)
     });
   });
 });
