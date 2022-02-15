@@ -9,3 +9,5 @@ app.use(express.json());
 app.use('/helloworld', helloWorldRoutes);
 
 app.listen(PORT, () => console.log(`Server open on port ${PORT}`));
+
+module.exports = { app };
