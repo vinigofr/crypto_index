@@ -5,9 +5,12 @@ const URL = `http://localhost:${PORT}/`;
 const fetchBtcCurrency = require('../api/fetchBtcCurrency');
 const { app } = require('../app');
 const { getCurrencyDataFromJSON } = require('../utils/getCurrencyDataFromJSON');
-const { getRate, getRateFloat } = require('../utils/formatCurrency')
+const { getRate, getRateFloat } = require('../utils/formatCurrency');
+const fs = require('fs');
+const path = require('path');
 
 jest.mock('../api/fetchBtcCurrency');
+
 
 const API_RESPONSE = {
   time: {
@@ -115,15 +118,67 @@ describe("Testing POST /api/crypto/btc", () => {
     server.close();
   });
 
-  it("The endpoint should can update the currencies.json file", async () => {
+  afterEach(() => {
+    // Restore to original file
+    fs.writeFileSync(
+      path.join(__dirname, '../currencies.json'),
+      JSON.stringify({
+        "BRL": "5.400",
+        "EUR": "0.920",
+        "CAD": "1.440"
+      })
+    );
+  });
 
-    await frisby.post(`${URL}api/crypto/`, {
+  it("Verify if the endpoint accepts only BRL, EUR and CAD currency codes", () => {});
+
+  it("Verify if the endpoint only accepts positive integers at currency update", () => {});
+
+  it("Verify if all fields are requireds", () => {});
+
+  it("The endpoint should can update BRL from currency.json file", async () => {
+    await frisby.post(`${URL}api/crypto/btc`, {
       body: {
         currency: "BRL",
-        value: 10000.0,
+        value: 5525,
       }
     })
     .expect('status', 200)
     .expect('json', { message: "Valor alterado com sucesso!" })
+
+    const currencies = getCurrencyDataFromJSON();
+    expect(currencies.BRL).toBe("5525.00")
   });
+
+  it("The endpoint should can update EUR from currency.json file", async () => {
+    await frisby.post(`${URL}api/crypto/btc`, {
+      body: {
+        currency: "EUR",
+        value: 1250.0,
+      }
+    })
+    .expect('status', 200)
+    .expect('json', { message: "Valor alterado com sucesso!" })
+
+    const currencies = getCurrencyDataFromJSON();
+    expect(currencies.BRL).toBe("10000.0")
+  });
+
+  it("The endpoint should can update CAD from currency.json file", async () => {
+    await frisby.post(`${URL}api/crypto/btc`, {
+      body: {
+        currency: "CAD",
+        value: 745.65,
+      }
+    })
+    .expect('status', 200)
+    .expect('json', { message: "Valor alterado com sucesso!" })
+
+    const currencies = getCurrencyDataFromJSON();
+    expect(currencies.BRL).toBe("10000.0")
+  });
+
+  it("Verify if the endpoint rejects unknown currency codes", () => {});
+
+  it("Verify if after update .JSON currency file, correct data is returnet from endpoint", () => {})
 });
