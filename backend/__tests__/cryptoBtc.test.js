@@ -5,6 +5,7 @@ const URL = `http://localhost:${PORT}/`;
 const fetchBtcCurrency = require('../api/fetchBtcCurrency');
 const { app } = require('../app');
 const { getCurrencyDataFromJSON } = require('../utils/getCurrencyDataFromJSON');
+const { getRate, getRateFloat } = require('../utils/formatCurrency')
 
 jest.mock('../api/fetchBtcCurrency');
 
@@ -52,21 +53,21 @@ const MODIFIED_API_RESPONSE = {
     },
     BRL: {
       code: "BRL",
-      rate: Number((Number(currencies.BRL) * API_RESPONSE.bpi.USD.rate_float).toFixed(4)).toLocaleString('en-US', { minimumFractionDigits: 4 }),
+      rate: getRate(currencies.BRL, API_RESPONSE.bpi.USD.rate_float),
       description: "Brazilian Real",
-      rete_float: Number((Number(currencies.BRL) * API_RESPONSE.bpi.USD.rate_float).toFixed(4)),
+      rate_float: getRateFloat(currencies.BRL, API_RESPONSE.bpi.USD.rate_float)
     },
     EUR: {
       code: "EUR",
-      rate: Number((Number(currencies.EUR) * API_RESPONSE.bpi.USD.rate_float).toFixed(4)).toLocaleString('en-US', { minimumFractionDigits: 4 }),
+      rate: getRate(currencies.EUR, API_RESPONSE.bpi.USD.rate_float),
       description: "Euro",
-      rete_float: Number((Number(currencies.EUR) * API_RESPONSE.bpi.USD.rate_float).toFixed(4)),
+      rate_float: getRateFloat(currencies.EUR, API_RESPONSE.bpi.USD.rate_float)
     },
     CAD: {
       code: "CAD",
-      rate: Number((Number(currencies.CAD) * API_RESPONSE.bpi.USD.rate_float).toFixed(4)).toLocaleString('en-US', { minimumFractionDigits: 4 }),
+      rate: getRate(currencies.CAD, API_RESPONSE.bpi.USD.rate_float),
       description: "Canadian Dollar",
-      rete_float: Number((Number(currencies.CAD) * API_RESPONSE.bpi.USD.rate_float).toFixed(4)),
+      rate_float: getRateFloat(currencies.CAD, API_RESPONSE.bpi.USD.rate_float)
     },
     BTC: {
       code: "BTC",
@@ -77,6 +78,8 @@ const MODIFIED_API_RESPONSE = {
   },
 }
 
+// To solve mock server problem, I create this topic on Stack Overflow:
+// https://stackoverflow.com/questions/71152604/how-to-mock-a-function-using-frisby-and-jest-to-return-custom-response
 describe("Testing GET /api/crypto/btc", () => {
 
   beforeAll((done) => {
