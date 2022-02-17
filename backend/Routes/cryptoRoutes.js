@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
-router.get('/', async (req, res) => res.status(501).send('Not implemented'));
+const cryptoController = require('../controllers/cryptoController');
+
+router.get('/', cryptoController.getBtcCurrency);
 
 module.exports = router;
