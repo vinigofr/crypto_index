@@ -102,3 +102,28 @@ describe("Testing GET /api/crypto/btc", () => {
       .expect('json', MODIFIED_API_RESPONSE);
   });
 });
+
+describe("Testing POST /api/crypto/btc", () => {
+
+  beforeAll((done) => {
+    server = app.listen(PORT, () => {
+      done();
+    });
+  });
+
+  afterAll(() => {
+    server.close();
+  });
+
+  it("The endpoint should can update the currencies.json file", async () => {
+
+    await frisby.post(`${URL}api/crypto/`, {
+      body: {
+        currency: "BRL",
+        value: 10000.0,
+      }
+    })
+    .expect('status', 200)
+    .expect('json', { message: "Valor alterado com sucesso!" })
+  });
+});
