@@ -1,9 +1,8 @@
-const URL = 'https://api.coindesk.com/v1/bpi/currentprice/BTC.json';
-const axios = require('axios');
+const fetchBtcCurrency = require('../api/fetchBtcCurrency');
 
 const getBtcCurrency = async () => {
-  const response = await axios.get(URL);
-  return response;
+  const responseFromApi = await fetchBtcCurrency.getCurrency();
+  return responseFromApi;
 };
 
 module.exports = {
