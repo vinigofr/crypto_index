@@ -60,7 +60,7 @@ describe("Testing GET /api/crypto/btc", () => {
 
   it('Verify if returns correct response with status code 200', async () => {
     
-    fetchBtcCurrency.getCurrency.mockImplementation(() => ({ a: 'b'}));
+    fetchBtcCurrency.getCurrency.mockImplementation(() => (API_RESPONSE));
 
     // const defaultExport = await fetchBtcCurrency();
     // expect(defaultExport).toBe(JSON.stringify({ a: 'b'})); // This assert works
@@ -68,6 +68,6 @@ describe("Testing GET /api/crypto/btc", () => {
     await frisby
       .get(`${URL}api/crypto/btc`)
       .expect('status', 200)
-      .expect('json', { a: 'b'}); // Integration test with Frisby does not work correctly.
+      .expect('json', API_RESPONSE); // Integration test with Frisby does not work correctly.
   });
 });

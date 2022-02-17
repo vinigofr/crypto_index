@@ -2,10 +2,24 @@ require('dotenv').config();
 const frisby = require('frisby');
 const jwt = require('jsonwebtoken');
 const URL = 'http://localhost:4000/';
+const { app } = require('../app');
+
+jest.mock('../api/fetchBtcCurrency');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
 describe('Testing POST /api/login', () => {
+  beforeAll((done) => {
+    server = app.listen(4000, () => {
+      done();
+    });
+  });
+
+  afterAll(() => {
+    server.close();
+  });
+
+
   it('Verify if when called with malformed data, return status code 400 with JSON { message: "Campos inválidos" }', async () => {
     await frisby.post(`${URL}api/login`, {
       body: {
