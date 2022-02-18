@@ -208,27 +208,27 @@ describe("Testing POST /api/crypto/btc", () => {
     await frisby.post(`${URL}api/crypto/btc`, {
       body: {
         currency: "EUR",
-        value: 1250.0,
+        value: 1250,
       }
     })
     .expect('status', 200)
     .expect('json', { message: "Valor alterado com sucesso!" })
 
     const currencies = getCurrencyDataFromJSON();
-    expect(currencies.BRL).toBe("10000.0")
+    expect(currencies.EUR).toBe("1250")
   });
 
   it("The endpoint should can update CAD from currency.json file", async () => {
     await frisby.post(`${URL}api/crypto/btc`, {
       body: {
         currency: "CAD",
-        value: 745.65,
+        value: "10000.0",
       }
     })
     .expect('status', 200)
     .expect('json', { message: "Valor alterado com sucesso!" })
 
     const currencies = getCurrencyDataFromJSON();
-    expect(currencies.BRL).toBe("10000.0")
+    expect(currencies.CAD).toBe("10000")
   });
 });
