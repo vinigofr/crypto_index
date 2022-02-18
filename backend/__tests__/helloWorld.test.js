@@ -1,7 +1,8 @@
+require('dotenv').config();
 const frisby = require('frisby');
 const URL = 'http://localhost:4000/';
 const { app } = require('../app');
-
+const PORT = process.env.PORT
 jest.mock('../api/fetchBtcCurrency');
 
 // References to learn testing
@@ -9,7 +10,7 @@ jest.mock('../api/fetchBtcCurrency');
 // https://docs.frisbyjs.com/api-and-usage/expectations-assertions#expect-jsontypes-path-data
 describe('Testing "Hello World" route', () => {
   beforeAll((done) => {
-    server = app.listen(4000, () => {
+    server = app.listen(PORT, () => {
       done();
     });
   });

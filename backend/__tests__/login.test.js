@@ -4,13 +4,14 @@ const jwt = require('jsonwebtoken');
 const URL = 'http://localhost:4000/';
 const { app } = require('../app');
 
+const PORT = process.env.PORT
 jest.mock('../api/fetchBtcCurrency');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
 describe('Testing POST /api/login', () => {
   beforeAll((done) => {
-    server = app.listen(4000, () => {
+    server = app.listen(PORT, () => {
       done();
     });
   });
