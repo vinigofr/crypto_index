@@ -5,7 +5,8 @@ const {
   verifyCurrencyValue,
   verifyAllowedCurrency,
 } = require('../middlewares/cryptoValidation');
+const { verifyToken } = require('../middlewares/auth');
 
-router.get('/', cryptoController.getBtcCurrency);
-router.post('/', verifyAllowedCurrency, verifyCurrencyValue, cryptoController.updateCurrency);
+router.get('/', verifyToken, cryptoController.getBtcCurrency);
+router.post('/', verifyToken, verifyAllowedCurrency, verifyCurrencyValue, cryptoController.updateCurrency);
 module.exports = router;
