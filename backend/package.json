@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --maxWorkers=1 --verbose",
     "start": "node server.js",
-    "coverage": "jest --coverage"
+    "coverage": "jest --verbose --coverage --maxWorkers=1"
   },
   "author": "Vinicius Gouveia",
   "license": "ISC",
