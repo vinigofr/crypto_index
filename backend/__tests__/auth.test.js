@@ -5,7 +5,8 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const URL = `http://localhost:${PORT}/`;
 const fetchBtcCurrency = require('../api/fetchBtcCurrency');
 const { app } = require('../app');
-const jwt = require('jsonwebtoken');
+const fs = require('fs')
+const path = require('path')
 
 jest.mock('../api/fetchBtcCurrency');
 
@@ -47,8 +48,17 @@ describe("Testing authentication GET and POST /api/crypto/btc", () => {
     });
   });
 
-  afterAll(() => {
-    server.close();
+  afterAll(async() => {
+    fs.writeFileSync(
+      path.join(__dirname, '../currencies.json'),
+      JSON.stringify({
+        "BRL": "5.400",
+        "EUR": "0.920",
+        "CAD": "1.440"
+      })
+    );
+
+    await server.close();
   });
 
   it('GET /api/crypto/btc should return status code 200 when authenticated', async () => {

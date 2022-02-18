@@ -101,8 +101,8 @@ describe("Testing GET /api/crypto/btc", () => {
     });
   });
 
-  afterAll(() => {
-    server.close();
+  afterAll(async() => {
+    await server.close();
   });
 
   it('Verify if returns correct response with status code 200', async () => {
@@ -130,8 +130,8 @@ describe("Testing POST /api/crypto/btc", () => {
     });
   });
 
-  afterAll(() => {
-    server.close();
+  afterAll(async() => {
+    await server.close();
   });
 
   afterEach(() => {

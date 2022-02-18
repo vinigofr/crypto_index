@@ -15,8 +15,8 @@ describe('Testing "Hello World" route', () => {
     });
   });
 
-  afterAll(() => {
-    server.close();
+  afterAll(async() => {
+    await server.close();
   });
 
 

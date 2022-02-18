@@ -16,8 +16,8 @@ describe('Testing POST /api/login', () => {
     });
   });
 
-  afterAll(() => {
-    server.close();
+  afterAll(async() => {
+    await server.close();
   });
 
 
