@@ -1,8 +1,6 @@
 const express = require('express');
 
 const app = express();
-
-// Routes
 app.use(express.json());
 
 // Source: https://stackoverflow.com/questions/53048642/node-js-handle-body-parser-invalid-json-error/53049009
