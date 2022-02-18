@@ -1,6 +1,7 @@
 require("dotenv").config();
 const frisby = require("frisby");
 const PORT = process.env.PORT;
+const JWT_SECRET = process.env.JWT_SECRET;
 const URL = `http://localhost:${PORT}/`;
 const fetchBtcCurrency = require('../api/fetchBtcCurrency');
 const { app } = require('../app');
@@ -8,6 +9,7 @@ const { getCurrencyDataFromJSON } = require('../utils/getCurrencyDataFromJSON');
 const { getRate, getRateFloat } = require('../utils/formatCurrency');
 const fs = require('fs');
 const path = require('path');
+const jwt = require('jsonwebtoken');
 
 jest.mock('../api/fetchBtcCurrency');
 
@@ -81,9 +83,17 @@ const MODIFIED_API_RESPONSE = {
   },
 }
 
+const FAKE_EMAIL = 'fake@fake.com';
 // To solve mock server problem, I create this topic on Stack Overflow:
 // https://stackoverflow.com/questions/71152604/how-to-mock-a-function-using-frisby-and-jest-to-return-custom-response
 describe("Testing GET /api/crypto/btc", () => {
+
+  frisby.globalSetup({
+    request: { 
+      headers: { 'Authorization': jwt.sign(FAKE_EMAIL, JWT_SECRET) },
+    },
+  }
+  );
 
   beforeAll((done) => {
     server = app.listen(PORT, () => {
@@ -107,6 +117,12 @@ describe("Testing GET /api/crypto/btc", () => {
 });
 
 describe("Testing POST /api/crypto/btc", () => {
+  frisby.globalSetup({
+    request: { 
+      headers: { 'Authorization': jwt.sign(FAKE_EMAIL, JWT_SECRET) },
+    },
+  }
+  );
 
   beforeAll((done) => {
     server = app.listen(PORT, () => {
