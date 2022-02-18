@@ -5,6 +5,9 @@ const getBtcCurrency = async () => {
   return currencyResponse;
 };
 
+const updateCurrency = async (data) => cryptoModel.updateCurrency(data);
+
 module.exports = {
   getBtcCurrency,
+  updateCurrency,
 };
