@@ -22,9 +22,13 @@ app.use((err, req, res, next) => {
 const helloWorldRoutes = require('./Routes/helloWorldRoutes');
 const loginRoutes = require('./Routes/loginRoutes');
 const cryptoRoutes = require('./Routes/cryptoRoutes');
+const notFoundRoute = require('./Routes/notFoundRoute');
 
 app.use('/helloworld', helloWorldRoutes);
 app.use('/api/login', loginRoutes);
 app.use('/api/crypto/btc', cryptoRoutes);
+// Source:
+// https://stackoverflow.com/questions/11500204/how-can-i-get-express-js-to-404-only-on-missing-routes
+app.use(notFoundRoute);
 
 module.exports = { app };
