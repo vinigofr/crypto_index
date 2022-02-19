@@ -1,30 +1,27 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { apiGetCurrency } from '../Api/CryptoApi';
+import useForceLogin from '../Hooks/useForceLogin';
 
 function Home() {
   const [btcCurrencies, setBtcCurrencies] = React.useState([]);
-  const [errorMessage, setErrorMessage] = React.useState('');
   const [btcValue, setBtcValue] = React.useState(1);
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-  const navigate = useNavigate();
+  const { forceLogin, redirectMessage } = useForceLogin();
 
   React.useEffect(async () => {
     const token = localStorage.getItem('token');
 
     const responseCurrencies = await apiGetCurrency(token);
     setLoading(false);
-    if (token) { // If exists on localStorage
+    if (token) {
       if (responseCurrencies.message) {
         setError(true);
-        setErrorMessage(`${responseCurrencies.message}. Direcionando para "/login" em 5 segundos...`);
-        setTimeout(() => navigate('/login'), 5000);
+        forceLogin(responseCurrencies.message);
       } else { setBtcCurrencies(responseCurrencies); }
     } else {
       setError(true);
-      setErrorMessage('Nao autenticado. Direcionando para "/login" em 5 segundos...');
-      setTimeout(() => navigate('/login'), 5000);
+      forceLogin('Nao autenticado');
     }
   }, []);
 
@@ -60,7 +57,7 @@ function Home() {
         </label>
       </form>
       <div>
-        { error && <p>{errorMessage}</p>}
+        { error && <p>{redirectMessage}</p>}
         { !error && btcCurrencies.length > 0 && (
           btcCurrencies.map(({ code, value }) => (
             <div>
