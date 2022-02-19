@@ -1,4 +1,5 @@
 import axios from 'axios';
+import formatApiResponse from '../Utils/formatApiResponse';
 
 const BASE_URL = 'http://localhost:4000/api/';
 
@@ -17,13 +18,15 @@ function apiLogin({ email, password }) {
 }
 
 function apiGetCurrency(token) {
-  axios
+  const response = axios
     .get(`${BASE_URL}crypto/btc`, {
       headers: {
         Authorization: token,
       },
     })
-    .catch((error) => console.log(error));
+    .then((res) => formatApiResponse(res))
+    .catch((error) => error.response.data);
+  return response;
 }
 
 function apiUpdateCurrency(token, currency) {
