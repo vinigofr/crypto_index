@@ -16,7 +16,7 @@ function apiLogin({ email, password }) {
   return response;
 }
 
-function apiCurrency(token) {
+function apiGetCurrency(token) {
   axios
     .get(`${BASE_URL}crypto/btc`, {
       headers: {
@@ -40,4 +40,4 @@ function apiUpdateCurrency(token, currency) {
     .catch((error) => console.log(error));
 }
 
-export { apiLogin, apiCurrency, apiUpdateCurrency };
+export { apiLogin, apiGetCurrency, apiUpdateCurrency };
