@@ -40,7 +40,6 @@ const API_RESPONSE = {
 
 const currencies = getCurrencyDataFromJSON();
 
-// https://stackoverflow.com/questions/24758817/javascript-number-tolocalestring-with-4-digits-after-separator
 const MODIFIED_API_RESPONSE = {
   time: {
     updated: "Feb 15, 2022 23:23:00 UTC",

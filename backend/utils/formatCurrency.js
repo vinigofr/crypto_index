@@ -1,3 +1,5 @@
+// Source:
+// https://stackoverflow.com/questions/24758817/javascript-number-tolocalestring-with-4-digits-after-separator
 const getRateFloat = (currencyValue, usdRateFloat) => Number((
   Number(currencyValue) * usdRateFloat)
   .toFixed(4))
