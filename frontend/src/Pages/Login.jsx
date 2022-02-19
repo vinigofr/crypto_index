@@ -5,10 +5,18 @@ import { apiLogin } from '../Api/CryptoApi';
 function Login() {
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
+  const [error, setError] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    apiLogin(email, password);
+
+    const result = await apiLogin({ email, password });
+
+    if (result.message) {
+      setErrorMessage(result.message);
+      setError(true);
+    }
   };
 
   return (
@@ -34,14 +42,11 @@ function Login() {
         </label>
         <button type="submit">Login</button>
       </form>
+      { error && <p>{errorMessage}</p> }
     </div>
   );
 }
 
 export default Login;
 
-// Ao clicar no botão, deve ser feita uma requisição para o endpoint de /api/login da API.
-
 // Caso a requisição seja bem sucedida, o token retornado deve ser salvo no localStorage, e a página deve ser redirecionada para a raiz da aplicação ("/").
-
-// Caso contrário, a mensagem de erro deve ser exibida na tela.
