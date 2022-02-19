@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { apiLogin } from '../Api/CryptoApi';
 
 /* eslint-disable max-len */
@@ -8,6 +9,8 @@ function Login() {
   const [error, setError] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -16,8 +19,20 @@ function Login() {
     if (result.message) {
       setErrorMessage(result.message);
       setError(true);
+    } else {
+      navigate('/');
     }
   };
+
+  React.useEffect(() => {
+    if ('token tiver no local storage') {
+      // Verifique no backend se o token é válido
+      // Se for, direcione para a página principal
+    } else {
+      // Se nao tiver token, direcione para a página de login
+      // Se tiver token mas for invalido, limpe o token do local storage
+    }
+  }, []);
 
   return (
     <div>
@@ -40,7 +55,7 @@ function Login() {
             onChange={({ target }) => setPassword(target.value)}
           />
         </label>
-        <button type="submit">Login</button>
+        <button type="submit">Entrar</button>
       </form>
       { error && <p>{errorMessage}</p> }
     </div>
@@ -48,5 +63,3 @@ function Login() {
 }
 
 export default Login;
-
-// Caso a requisição seja bem sucedida, o token retornado deve ser salvo no localStorage, e a página deve ser redirecionada para a raiz da aplicação ("/").
