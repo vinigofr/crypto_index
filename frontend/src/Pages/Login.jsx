@@ -1,15 +1,42 @@
+import React from 'react';
+
 /* eslint-disable max-len */
 function Login() {
+  const [email, setEmail] = React.useState();
+  const [password, setPassword] = React.useState();
+
+  const handleSubmit = () => {
+    console.log(email, password);
+  };
+
   return (
     <div>
-      Login page!
+      <form onSubmit={() => handleSubmit()}>
+        <label htmlFor="email">
+          Email
+          <input
+            id="email"
+            name="email"
+            type="text"
+            onChange={({ target }) => setEmail(target.value)}
+          />
+        </label>
+        <label htmlFor="password">
+          Senha
+          <input
+            id="password"
+            name="password"
+            type="password"
+            onChange={({ target }) => setPassword(target.value)}
+          />
+        </label>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
 
 export default Login;
-
-// Essa página deve conter um formulário de e-mail e senha e um botão "Entrar".
 
 // Ao clicar no botão, deve ser feita uma requisição para o endpoint de /api/login da API.
 
