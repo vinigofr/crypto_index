@@ -3,15 +3,17 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:4000/api/';
 
 function apiLogin({ email, password }) {
-  axios
+  const response = axios
     .post(`${BASE_URL}login`, {
       email,
       password,
     })
-    .then((response) => {
-      localStorage.setItem('token', response.data.token);
+    .then((res) => {
+      localStorage.setItem('token', res.data.token);
+      return true;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => error.response.data);
+  return response;
 }
 
 function apiCurrency(token) {
