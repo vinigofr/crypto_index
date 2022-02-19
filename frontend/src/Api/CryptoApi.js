@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:4000/api/';
 
-function login({ email, password }) {
+function apiLogin({ email, password }) {
   axios
     .post(`${BASE_URL}login`, {
       email,
@@ -14,7 +14,7 @@ function login({ email, password }) {
     .catch((error) => console.log(error));
 }
 
-function getCurrency(token) {
+function apiCurrency(token) {
   axios
     .get(`${BASE_URL}crypto/btc`, {
       headers: {
@@ -24,7 +24,7 @@ function getCurrency(token) {
     .catch((error) => console.log(error));
 }
 
-function updateCurrency(token, currency) {
+function apiUpdateCurrency(token, currency) {
   const { code, value } = currency;
 
   axios
@@ -38,4 +38,4 @@ function updateCurrency(token, currency) {
     .catch((error) => console.log(error));
 }
 
-export { login, getCurrency, updateCurrency };
+export { apiLogin, apiCurrency, apiUpdateCurrency };
