@@ -1,17 +1,19 @@
 import React from 'react';
+import { apiLogin } from '../Api/CryptoApi';
 
 /* eslint-disable max-len */
 function Login() {
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
 
-  const handleSubmit = () => {
-    console.log(email, password);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    apiLogin(email, password);
   };
 
   return (
     <div>
-      <form onSubmit={() => handleSubmit()}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="email">
           Email
           <input
