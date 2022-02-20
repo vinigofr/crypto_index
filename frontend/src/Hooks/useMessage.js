@@ -17,13 +17,6 @@ function useMessage() {
     if (message) {
       setRedirectMessage(message);
     }
-
-    // if (customMessage) {
-    //   setRedirectMessage(`${customMessage}. ${dafaultMessage}`);
-    // } else {
-    //   setRedirectMessage(dafaultMessage);
-    // }
-    // setTimeout(() => navigate('/login'), 5000);
   };
 
   return { setMessage, redirectMessage };
