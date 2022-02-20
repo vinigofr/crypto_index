@@ -2,6 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiUpdateCurrency, apiGetBaseCurrencies } from '../Api/CryptoApi';
 import useMessage from '../Hooks/useMessage';
+import Button from '../StyledComponents/Button';
+import InputNumber from '../StyledComponents/InputNumber';
+import Select from '../StyledComponents/Select';
 
 function Update() {
   const [token, setToken] = React.useState(null);
@@ -80,17 +83,17 @@ function Update() {
 
   return (
     <div>
-      <button
+      <Button
         type="button"
         disabled={loading}
         onClick={() => navigate('/')}
       >
         Voltar
-      </button>
+      </Button>
       <form onSubmit={(e) => updateValue(e)}>
         <label htmlFor="currency">
           Moeda
-          <select
+          <Select
             onChange={(e) => setSelectedCurrency(e.target.value)}
             disabled={loading}
           >
@@ -101,7 +104,7 @@ function Update() {
                 </option>
               ))
             }
-          </select>
+          </Select>
         </label>
         <p>
           Valor atual:
@@ -110,15 +113,16 @@ function Update() {
         </p>
         <label htmlFor="newValue">
           Novo valor
-          <input
+          <InputNumber
             min={1}
             disabled={loading}
             id="newValue"
             type="number"
+            placeholder="Ex: 5"
             onChange={({ target: { value } }) => setNewCurrencyValue(value)}
           />
         </label>
-        <button type="submit">Atualizar</button>
+        <Button type="submit">Atualizar</Button>
       </form>
       { error && <p>{redirectMessage}</p> }
     </div>

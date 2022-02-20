@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiLogin } from '../Api/CryptoApi';
+import Button from '../StyledComponents/Button';
+import Input from '../StyledComponents/Input';
 
 function Login() {
   const [email, setEmail] = React.useState();
@@ -34,7 +36,7 @@ function Login() {
       <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="email">
           Email
-          <input
+          <Input
             id="email"
             name="email"
             type="text"
@@ -43,14 +45,14 @@ function Login() {
         </label>
         <label htmlFor="password">
           Senha
-          <input
+          <Input
             id="password"
             name="password"
             type="password"
             onChange={({ target }) => setPassword(target.value)}
           />
         </label>
-        <button type="submit">Entrar</button>
+        <Button type="submit">Entrar</Button>
       </form>
       { error && <p>{errorMessage}</p> }
     </div>

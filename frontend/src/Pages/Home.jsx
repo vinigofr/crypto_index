@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiGetCurrency } from '../Api/CryptoApi';
 import useMessage from '../Hooks/useMessage';
+import InputNumber from '../StyledComponents/InputNumber';
+import Button from '../StyledComponents/Button';
 
 function Home() {
   const [btcCurrencies, setBtcCurrencies] = React.useState([]);
@@ -56,17 +58,17 @@ function Home() {
 
   return (
     <div>
-      <button
+      <Button
         type="button"
         disabled={loading || error}
         onClick={() => navigate('/update')}
       >
         Atualizar valor monetário
-      </button>
+      </Button>
       <form>
         <label htmlFor="btcValue">
           Bitcoin
-          <input
+          <InputNumber
             disabled={loading || error}
             id="btcValue"
             name="btcValue"
