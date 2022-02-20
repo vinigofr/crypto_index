@@ -1,13 +1,13 @@
 import React from 'react';
 import { apiGetCurrency } from '../Api/CryptoApi';
-import useForceLogin from '../Hooks/useForceLogin';
+import useMessage from '../Hooks/useMessage';
 
 function Home() {
   const [btcCurrencies, setBtcCurrencies] = React.useState([]);
   const [btcValue, setBtcValue] = React.useState(1);
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-  const { forceLogin, redirectMessage } = useForceLogin();
+  const { setMessage, redirectMessage } = useMessage();
 
   React.useEffect(async () => {
     const token = localStorage.getItem('token');
@@ -17,19 +17,28 @@ function Home() {
 
     if (responseCurrencies.CONN_ERR) {
       setError(true);
-      forceLogin(responseCurrencies.CONN_ERR);
+      setMessage({
+        route: '/login',
+        message: `${responseCurrencies.CONN_ERR}. Direcionando para /login em 5 segundos`,
+      });
       return;
     }
 
     if (!token) {
       setError(true);
-      forceLogin('Nao autenticado');
+      setMessage({
+        route: '/login',
+        message: 'Nao autenticado! Direcionando para /login em 5 segundos',
+      });
       return;
     }
 
     if (responseCurrencies.message) {
       setError(true);
-      forceLogin(responseCurrencies.message);
+      setMessage({
+        message: `${responseCurrencies.message}. Direcionando para /login em 5 segundos`,
+        route: '/login',
+      });
     } else {
       setBtcCurrencies(responseCurrencies);
     }
