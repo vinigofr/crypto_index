@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { apiGetCurrency } from '../Api/CryptoApi';
 import useMessage from '../Hooks/useMessage';
 
@@ -8,6 +9,7 @@ function Home() {
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const { setMessage, redirectMessage } = useMessage();
+  const navigate = useNavigate();
 
   React.useEffect(async () => {
     const token = localStorage.getItem('token');
@@ -57,6 +59,7 @@ function Home() {
       <button
         type="button"
         disabled={loading || error}
+        onClick={() => navigate('/update')}
       >
         Atualizar valor monetário
       </button>
