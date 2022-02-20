@@ -2,6 +2,7 @@ import axios from 'axios';
 import formatApiResponse from '../Utils/formatApiResponse';
 
 const BASE_URL = 'http://localhost:4000/api/';
+const CONN_ERR = 'Erro ao conectar-se com o servidor.';
 
 function apiLogin({ email, password }) {
   const response = axios
@@ -13,7 +14,8 @@ function apiLogin({ email, password }) {
       localStorage.setItem('token', res.data.token);
       return true;
     })
-    .catch((error) => error.response.data);
+    .catch((error) => error.response.data)
+    .catch(() => ({ CONN_ERR }));
   return response;
 }
 
@@ -25,7 +27,8 @@ function apiGetCurrency(token) {
       },
     })
     .then((res) => formatApiResponse(res))
-    .catch((error) => error.response.data);
+    .catch((error) => error.response.data)
+    .catch(() => ({ CONN_ERR }));
   return response;
 }
 
