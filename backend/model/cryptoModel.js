@@ -24,7 +24,13 @@ const updateCurrency = ({ currency, value }) => {
   };
 };
 
+const getBaseCurrencies = () => {
+  const currentCurrencyData = getCurrencyDataFromJSON();
+  return currentCurrencyData;
+};
+
 module.exports = {
   getBtcCurrency,
   updateCurrency,
+  getBaseCurrencies,
 };

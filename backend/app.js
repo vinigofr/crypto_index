@@ -1,7 +1,9 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Source: https://stackoverflow.com/questions/53048642/node-js-handle-body-parser-invalid-json-error/53049009
 // Handle syntax error from body
