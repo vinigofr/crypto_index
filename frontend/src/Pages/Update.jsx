@@ -55,7 +55,6 @@ function Update() {
     };
 
     const response = await apiUpdateCurrency(token, updateData);
-    console.log(response);
     if (response.CONN_ERR) {
       setError(true);
       setMessage({
