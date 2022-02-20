@@ -11,7 +11,13 @@ const updateCurrency = async (req, res) => {
   return res.status(200).send(response);
 };
 
+const getBaseCurrencies = async (req, res) => {
+  const baseCurrencies = await cryptoService.getBaseCurrencies();
+  return res.status(200).json(baseCurrencies);
+};
+
 module.exports = {
   getBtcCurrency,
   updateCurrency,
+  getBaseCurrencies,
 };
