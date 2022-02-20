@@ -32,6 +32,19 @@ function apiGetCurrency(token) {
   return response;
 }
 
+function apiGetBaseCurrencies(token) {
+  const response = axios
+    .get(`${BASE_URL}crypto/btc/base`, {
+      headers: {
+        Authorization: token,
+      },
+    })
+    .then((res) => res.data)
+    .catch((error) => error.response.data)
+    .catch(() => ({ CONN_ERR }));
+  return response;
+}
+
 function apiUpdateCurrency(token, currency) {
   const { code, value } = currency;
 
@@ -46,4 +59,9 @@ function apiUpdateCurrency(token, currency) {
     .catch((error) => console.log(error));
 }
 
-export { apiLogin, apiGetCurrency, apiUpdateCurrency };
+export {
+  apiLogin,
+  apiGetCurrency,
+  apiUpdateCurrency,
+  apiGetBaseCurrencies,
+};
