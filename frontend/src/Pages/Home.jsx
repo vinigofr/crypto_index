@@ -14,14 +14,24 @@ function Home() {
 
     const responseCurrencies = await apiGetCurrency(token);
     setLoading(false);
-    if (token) {
-      if (responseCurrencies.message) {
-        setError(true);
-        forceLogin(responseCurrencies.message);
-      } else { setBtcCurrencies(responseCurrencies); }
-    } else {
+
+    if (responseCurrencies.CONN_ERR) {
+      setError(true);
+      forceLogin(responseCurrencies.CONN_ERR);
+      return;
+    }
+
+    if (!token) {
       setError(true);
       forceLogin('Nao autenticado');
+      return;
+    }
+
+    if (responseCurrencies.message) {
+      setError(true);
+      forceLogin(responseCurrencies.message);
+    } else {
+      setBtcCurrencies(responseCurrencies);
     }
   }, []);
 
