@@ -1,6 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { apiUpdateCurrency, apiGetBaseCurrencies } from '../Api/CryptoApi';
-import useForceLogin from '../Hooks/useForceLogin';
+import useMessage from '../Hooks/useMessage';
 
 function Update() {
   const [token, setToken] = React.useState(null);
@@ -9,7 +10,8 @@ function Update() {
   const [selectedCurrency, setSelectedCurrency] = React.useState('BRL');
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-  const { forceLogin, redirectMessage } = useForceLogin();
+  const { setMessage, redirectMessage } = useMessage();
+  const navigate = useNavigate();
 
   React.useEffect(async () => {
     const authToken = localStorage.getItem('token');
@@ -18,40 +20,71 @@ function Update() {
 
     if (apiBaseCurrencies.CONN_ERR) {
       setError(true);
-      forceLogin(apiBaseCurrencies.CONN_ERR);
+      setMessage({
+        message: `${apiBaseCurrencies.CONN_ERR} Direcionando para /login em 5 segundos`,
+        route: '/login',
+      });
       return;
     }
 
     if (!authToken) {
       setError(true);
-      forceLogin('Nao autenticado');
+      setMessage({
+        message: 'Nao autenticado! Direcionando para /login em 5 segundos',
+        route: '/login',
+      });
     }
 
     if (apiBaseCurrencies.message) {
       setError(true);
-      forceLogin(apiBaseCurrencies.message);
+      setMessage({
+        message: apiBaseCurrencies.message,
+      });
     } else {
       setToken(authToken);
       setBaseCurrencies(apiBaseCurrencies);
     }
   }, []);
 
-  const updateValue = (e) => {
-    e.prevendDefault();
+  const updateValue = async (e) => {
+    e.preventDefault();
 
     const updateData = {
-      code: selectedCurrency,
+      currency: selectedCurrency,
       value: newCurrencyValue,
     };
 
-    apiUpdateCurrency(token, updateData);
+    const response = await apiUpdateCurrency(token, updateData);
+    console.log(response);
+    if (response.CONN_ERR) {
+      setError(true);
+      setMessage({
+        message: response.CONN_ERR,
+      });
+      return;
+    }
+
+    if (response.message) {
+      setError(true);
+      setMessage({
+        message: response.message,
+      });
+    }
+
+    if (response.message === 'Valor alterado com sucesso!') {
+      setMessage({
+        message: `${response.message} Direcionando para / em 5 segundos`,
+        route: '/',
+      });
+    }
   };
 
   return (
     <div>
       <button
         type="button"
-        disabled={loading || error}
+        disabled={loading}
+        onClick={() => navigate('/')}
       >
         Voltar
       </button>
@@ -60,7 +93,7 @@ function Update() {
           Moeda
           <select
             onChange={(e) => setSelectedCurrency(e.target.value)}
-            disabled={loading || error}
+            disabled={loading}
           >
             {
               Object.keys(baseCurrencies).map((code) => (
@@ -79,12 +112,14 @@ function Update() {
         <label htmlFor="newValue">
           Novo valor
           <input
-            disabled={loading || error}
+            min={1}
+            disabled={loading}
             id="newValue"
             type="number"
-            onChange={({ target: value }) => setNewCurrencyValue(value)}
+            onChange={({ target: { value } }) => setNewCurrencyValue(value)}
           />
         </label>
+        <button type="submit">Atualizar</button>
       </form>
       { error && <p>{redirectMessage}</p> }
     </div>
