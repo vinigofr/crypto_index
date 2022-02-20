@@ -45,18 +45,16 @@ function apiGetBaseCurrencies(token) {
   return response;
 }
 
-function apiUpdateCurrency(token, currency) {
-  const { code, value } = currency;
-
-  axios
-    .post(`${BASE_URL}crypto/btc`, {
-      code,
-      value,
+async function apiUpdateCurrency(token, data) {
+  return axios
+    .post(`${BASE_URL}crypto/btc`, data, {
+      headers: {
+        Authorization: token,
+      },
     })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => console.log(error));
+    .then((res) => res.data)
+    .catch((error) => error.response.data)
+    .catch(() => ({ CONN_ERR }));
 }
 
 export {
