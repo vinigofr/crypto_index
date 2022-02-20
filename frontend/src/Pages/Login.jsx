@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiLogin } from '../Api/CryptoApi';
 
-/* eslint-disable max-len */
 function Login() {
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
@@ -16,6 +15,12 @@ function Login() {
 
     const result = await apiLogin({ email, password });
 
+    if (result.CONN_ERR) {
+      setError(true);
+      setErrorMessage(result.CONN_ERR);
+      return;
+    }
+
     if (result.message) {
       setErrorMessage(result.message);
       setError(true);
@@ -23,16 +28,6 @@ function Login() {
       navigate('/');
     }
   };
-
-  React.useEffect(() => {
-    if ('token tiver no local storage') {
-      // Verifique no backend se o token é válido
-      // Se for, direcione para a página principal
-    } else {
-      // Se nao tiver token, direcione para a página de login
-      // Se tiver token mas for invalido, limpe o token do local storage
-    }
-  }, []);
 
   return (
     <div>
