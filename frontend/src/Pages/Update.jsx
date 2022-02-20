@@ -72,7 +72,7 @@ function Update() {
 
     if (response.message === 'Valor alterado com sucesso!') {
       setMessage({
-        message: `${response.message} Direcionando para / em 5 segundos`,
+        message: `${response.message} Direcionando para pagina inicial em 5 segundos`,
         route: '/',
       });
     }
