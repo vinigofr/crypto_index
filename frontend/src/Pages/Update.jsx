@@ -1,22 +1,94 @@
-/* eslint-disable max-len */
+import React from 'react';
+import { apiUpdateCurrency, apiGetBaseCurrencies } from '../Api/CryptoApi';
+import useForceLogin from '../Hooks/useForceLogin';
+
 function Update() {
+  const [token, setToken] = React.useState(null);
+  const [newCurrencyValue, setNewCurrencyValue] = React.useState(0);
+  const [baseCurrencies, setBaseCurrencies] = React.useState({});
+  const [selectedCurrency, setSelectedCurrency] = React.useState('BRL');
+  const [error, setError] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const { forceLogin, redirectMessage } = useForceLogin();
+
+  React.useEffect(async () => {
+    const authToken = localStorage.getItem('token');
+    const apiBaseCurrencies = await apiGetBaseCurrencies(authToken);
+    setLoading(false);
+
+    if (apiBaseCurrencies.CONN_ERR) {
+      setError(true);
+      forceLogin(apiBaseCurrencies.CONN_ERR);
+      return;
+    }
+
+    if (!authToken) {
+      setError(true);
+      forceLogin('Nao autenticado');
+    }
+
+    if (apiBaseCurrencies.message) {
+      setError(true);
+      forceLogin(apiBaseCurrencies.message);
+    } else {
+      setToken(authToken);
+      setBaseCurrencies(apiBaseCurrencies);
+    }
+  }, []);
+
+  const updateValue = (e) => {
+    e.prevendDefault();
+
+    const updateData = {
+      code: selectedCurrency,
+      value: newCurrencyValue,
+    };
+
+    apiUpdateCurrency(token, updateData);
+  };
+
   return (
     <div>
-      Update page!
+      <button
+        type="button"
+        disabled={loading || error}
+      >
+        Voltar
+      </button>
+      <form onSubmit={(e) => updateValue(e)}>
+        <label htmlFor="currency">
+          Moeda
+          <select
+            onChange={(e) => setSelectedCurrency(e.target.value)}
+            disabled={loading || error}
+          >
+            {
+              Object.keys(baseCurrencies).map((code) => (
+                <option>
+                  {code}
+                </option>
+              ))
+            }
+          </select>
+        </label>
+        <p>
+          Valor atual:
+          {' '}
+          { baseCurrencies[selectedCurrency] }
+        </p>
+        <label htmlFor="newValue">
+          Novo valor
+          <input
+            disabled={loading || error}
+            id="newValue"
+            type="number"
+            onChange={({ target: value }) => setNewCurrencyValue(value)}
+          />
+        </label>
+      </form>
+      { error && <p>{redirectMessage}</p> }
     </div>
   );
 }
 
 export default Update;
-
-// A página deverá conter:
-
-// Um select onde deverá ser possível selecionar a moeda cuja cotação se deseja atualizar. Os valores possíveis devem ser BRL, EUR e CAD;
-
-// Após ter selecionado uma moeda, um texto deve mostrar o valor atual da cotação;
-
-// Um input onde o novo valor de cotação poderá ser digitado;
-
-// Um botão "Atualizar". Ao clicar nesse botão, deve ser feita uma requisição POST para o endpoint /api/crypto/btc, com o novo valor da moeda selecionada. Caso a requisição seja bem sucedida, a página deverá ser redirecionada para a home. Caso contrário, a mensagem de erro retornada pela API deve ser exibida na página;
-
-// Um botão "Voltar" que, quando clicado, redireciona para a home, sem atualizar o valor da moeda selecionada.
