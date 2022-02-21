@@ -1,6 +1,6 @@
 <h1 style="text-align: center">Boas vindas ao projeto Crypto Index!<h1>
 
-<table>
+<table style="margin: auto">
   <tr>
     <td>
       <img src="https://github.com/vinigofr/crypto_index/blob/main/images/login.jpeg?raw=true" width="250"/>
