@@ -1,7 +1,25 @@
 <h1 style="text-align: center">Boas vindas ao projeto Crypto Index!<h1>
 
-Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk**](https://www.coindesk.com/).
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/vinigofr/crypto_index/blob/main/images/login.jpeg?raw=true" width="250"/>
+    </td>
+    <td>
+      <img src="https://github.com/vinigofr/crypto_index/blob/main/images/currencies.jpeg?raw=true" width="250"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://github.com/vinigofr/crypto_index/blob/main/images/not_found.jpeg?raw=true" width="250"/>
+    </td>
+    <td>
+      <img src="https://github.com/vinigofr/crypto_index/blob/main/images/update_currencies.jpeg?raw=true" width="250"/>
+    </td>
+  </tr>
+</table>
 
+Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk**](https://www.coindesk.com/).
 
 # Sumário
 
