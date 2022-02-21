@@ -23,9 +23,31 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 
 # Sumário
 
+- [Tecnologias e bibliotecas utilizadas](#tecnologias-utilizadas)
 - [Requisitos necessários](#requisitos)
 - [Como rodar em sua maquina](#como-rodar-em-sua-maquina)
 - [Endpoints da aplicação](#endpoints)
+
+# Tecnologias utilizadas:
+
+## Frontend (JavaScrip, CSS, React)
+- [React](https://reactjs.org/)
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
+- [StyledComponents](https://www.styled-components.com/)
+- [Axios](https://www.npmjs.com/package/axios)
+- [ESLint](https://eslint.org/)
+
+## Backend (NodeJS)
+- [NodeJS](https://nodejs.org/)
+- [Cors](https://www.npmjs.com/package/cors)
+- [DotENV](https://www.npmjs.com/package/dotenv)
+- [JsonWebToken](https://www.npmjs.com/package/jsonwebtoken)
+- [Express](https://expressjs.com/)
+- [Joi](https://joi.dev/api/)
+- [Axios](https://www.npmjs.com/package/axios)
+- [ESLint](https://eslint.org/)
+- [Jest](https://jestjs.io/)
+- [Frisby](https://frisbyjs.com/)
 
 # Requisitos:
 
@@ -33,7 +55,7 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 ### 1. Node.Js LTS
 ### 2. NPM (Node Package Manager)
 ### 3. Git (Ferramenta de versionamento)
----
+
 # Como rodar em sua maquina
 
 ## Passo a passo de como inicializar a aplicação:
@@ -147,3 +169,13 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
   "message": "Endpoint não encontrado"
 }
 ```
+
+# Sobre os testes:
+
+## Para realização de testes no backend:
+### 1. Acesse a pasta `backend` e execute o comando `npm test`:
+- imagem de um teste aqui
+
+### 2. Para realizar a verificação de cobertura de testes:
+- Ainda na pasta `backend` execute `npm run coverage`
+- Imagem do teste aqui
