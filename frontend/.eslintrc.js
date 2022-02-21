@@ -26,5 +26,6 @@ module.exports = {
       controlComponents: ['CustomInput'],
       depth: 3,
     }],
+    'react/prop-types': 0,
   },
 };
