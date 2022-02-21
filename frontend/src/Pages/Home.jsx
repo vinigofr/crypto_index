@@ -23,7 +23,7 @@ function Home() {
       setError(true);
       setMessage({
         route: '/login',
-        message: `${responseCurrencies.CONN_ERR}. Direcionando para /login em 5 segundos`,
+        message: `${responseCurrencies.CONN_ERR} Direcionando para /login em 5 segundos`,
       });
       return;
     }

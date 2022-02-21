@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { apiUpdateCurrency, apiGetBaseCurrencies } from '../Api/CryptoApi';
+import BackToHomeButton from '../Components/BackToHomeButton';
 import useMessage from '../Hooks/useMessage';
 import Button from '../StyledComponents/Button';
 import InputNumber from '../StyledComponents/InputNumber';
@@ -14,7 +14,6 @@ function Update() {
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const { setMessage, redirectMessage } = useMessage();
-  const navigate = useNavigate();
 
   React.useEffect(async () => {
     const authToken = localStorage.getItem('token');
@@ -83,14 +82,9 @@ function Update() {
 
   return (
     <div className="update-container">
-      <Button
-        type="button"
-        disabled={loading}
-        onClick={() => navigate('/')}
-        className="back-button"
-      >
+      <BackToHomeButton loading={loading}>
         Voltar
-      </Button>
+      </BackToHomeButton>
       <form onSubmit={(e) => updateValue(e)}>
         <label htmlFor="currency">
           Moeda
