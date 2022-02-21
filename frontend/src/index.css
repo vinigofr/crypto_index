@@ -18,7 +18,7 @@ code {
     monospace;
 }
 
-.messageContainer p {
+.message-container p {
   font-size: 1.5rem;
   color: #fff;
   text-align: center;

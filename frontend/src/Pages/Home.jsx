@@ -57,7 +57,7 @@ function Home() {
   }
 
   return (
-    <div className="homeContainer">
+    <div className="home-container">
       <Button
         type="button"
         disabled={loading || error}
@@ -80,17 +80,17 @@ function Home() {
           />
         </label>
       </form>
-      <div className="currencyList">
+      <div className="currency-list">
         { !error && btcCurrencies.length > 0 && (
           btcCurrencies.map(({ code, value }) => (
-            <div className="currencyCard">
-              <h3 className="currencyTitle">{code}</h3>
-              <p className="currencyPrice">{(value * btcValue).toFixed(2)}</p>
+            <div className="currency-card">
+              <h3 className="currency-title">{code}</h3>
+              <p className="currency-price">{(value * btcValue).toFixed(2)}</p>
             </div>
           ))
         )}
       </div>
-      <div className="messageContainer">
+      <div className="message-container">
         { error && <p>{redirectMessage}</p>}
         { loading && <p>Carregando...</p> }
       </div>

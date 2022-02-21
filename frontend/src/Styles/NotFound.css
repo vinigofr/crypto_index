@@ -1,4 +1,4 @@
-.notFoundContainer {
+.not-found-container {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-.notFoundContainer h1 {
+.not-found-container h1 {
   font-size: 3rem;
   font-weight: bold;
   color: #fff;

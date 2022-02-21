@@ -1,4 +1,4 @@
-.updateContainer {
+.update-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-.updateContainer form {
+.update-container form {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -16,7 +16,7 @@
   box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.5);
 }
 
-.updateContainer form label {
+.update-container form label {
   display: flex;
   text-align: left;
   flex-direction: column;
@@ -24,14 +24,20 @@
   font-size: large;
 }
 
-.updateContainer .backButton {
+.update-container .back-button {
   margin-bottom: 50px;
   font-size: large;
   cursor: pointer;
 }
 
-.updateContainer .updateButton {
+.update-container .update-button {
   margin-top: 25px;
   font-size: large;
   cursor: pointer;
+}
+
+.update-container form .current-currency-value p {
+  margin-top: 25px;
+  font-size: large;
+  color: white;
 }

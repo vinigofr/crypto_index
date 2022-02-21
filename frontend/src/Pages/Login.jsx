@@ -32,7 +32,7 @@ function Login() {
   };
 
   return (
-    <div className="loginContainer">
+    <div className="login-container">
       <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="email">
           Email
@@ -54,7 +54,7 @@ function Login() {
         </label>
         <Button type="submit">Entrar</Button>
       </form>
-      <div className="messageContainer">
+      <div className="message-container">
         { error && <p>{errorMessage}</p> }
       </div>
     </div>

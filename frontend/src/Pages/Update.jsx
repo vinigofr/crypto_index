@@ -82,12 +82,12 @@ function Update() {
   };
 
   return (
-    <div className="updateContainer">
+    <div className="update-container">
       <Button
         type="button"
         disabled={loading}
         onClick={() => navigate('/')}
-        className="backButton"
+        className="back-button"
       >
         Voltar
       </Button>
@@ -107,11 +107,13 @@ function Update() {
             }
           </Select>
         </label>
-        <p>
-          Valor atual:
-          {' '}
-          { baseCurrencies[selectedCurrency] }
-        </p>
+        <div className="current-currency-value">
+          <p>
+            Valor atual:
+            {' '}
+            { baseCurrencies[selectedCurrency] }
+          </p>
+        </div>
         <label htmlFor="newValue">
           Novo valor
           <InputNumber
@@ -123,11 +125,11 @@ function Update() {
             onChange={({ target: { value } }) => setNewCurrencyValue(value)}
           />
         </label>
-        <Button type="submit" className="updateButton">
+        <Button type="submit" className="update-button">
           Atualizar
         </Button>
       </form>
-      <div className="messageContainer">
+      <div className="message-container">
         { error && <p>{redirectMessage}</p> }
       </div>
     </div>
