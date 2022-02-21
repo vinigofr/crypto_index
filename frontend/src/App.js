@@ -1,6 +1,10 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import './Styles/Login.css';
+import './Styles/Home.css';
+import './Styles/Update.css';
+import './Styles/NotFound.css';
 
 // Page components
 const Home = lazy(() => import('./Pages/Home'));

@@ -82,11 +82,12 @@ function Update() {
   };
 
   return (
-    <div>
+    <div className="updateContainer">
       <Button
         type="button"
         disabled={loading}
         onClick={() => navigate('/')}
+        className="backButton"
       >
         Voltar
       </Button>
@@ -122,9 +123,13 @@ function Update() {
             onChange={({ target: { value } }) => setNewCurrencyValue(value)}
           />
         </label>
-        <Button type="submit">Atualizar</Button>
+        <Button type="submit" className="updateButton">
+          Atualizar
+        </Button>
       </form>
-      { error && <p>{redirectMessage}</p> }
+      <div className="messageContainer">
+        { error && <p>{redirectMessage}</p> }
+      </div>
     </div>
   );
 }
