@@ -1,9 +1,10 @@
 require('dotenv').config();
 const frisby = require('frisby');
+
 const URL = 'http://localhost:4000/';
 const { app } = require('../app');
 
-const PORT = process.env.PORT
+const { PORT } = process.env;
 
 describe('Testing unknown routes', () => {
   beforeAll((done) => {
@@ -12,7 +13,7 @@ describe('Testing unknown routes', () => {
     });
   });
 
-  afterAll(async() => {
+  afterAll(async () => {
     await server.close();
   });
 

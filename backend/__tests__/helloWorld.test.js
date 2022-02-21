@@ -1,8 +1,10 @@
 require('dotenv').config();
 const frisby = require('frisby');
+
 const URL = 'http://localhost:4000/';
 const { app } = require('../app');
-const PORT = process.env.PORT
+
+const { PORT } = process.env;
 jest.mock('../api/fetchBtcCurrency');
 
 // References to learn testing
@@ -15,10 +17,9 @@ describe('Testing "Hello World" route', () => {
     });
   });
 
-  afterAll(async() => {
+  afterAll(async () => {
     await server.close();
   });
-
 
   it('Verify if when called endpoint /helloworld, returns "Hello World"', async () => {
     await frisby.get(`${URL}helloworld`)

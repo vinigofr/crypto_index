@@ -1,13 +1,14 @@
 require('dotenv').config();
 const frisby = require('frisby');
 const jwt = require('jsonwebtoken');
+
 const URL = 'http://localhost:4000/';
 const { app } = require('../app');
 
-const PORT = process.env.PORT
+const { PORT } = process.env;
 jest.mock('../api/fetchBtcCurrency');
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const { JWT_SECRET } = process.env;
 
 describe('Testing POST /api/login', () => {
   beforeAll((done) => {
@@ -16,17 +17,16 @@ describe('Testing POST /api/login', () => {
     });
   });
 
-  afterAll(async() => {
+  afterAll(async () => {
     await server.close();
   });
-
 
   it('Verify if when called with malformed data, return status code 400 with JSON { message: "Campos inválidos" }', async () => {
     await frisby.post(`${URL}api/login`, {
       body: {
-        email: "wrongmail@.com",
-        password: "pass"
-      }
+        email: 'wrongmail@.com',
+        password: 'pass',
+      },
     })
       .expect('status', 400)
       .expect('json', { message: 'Campos inválidos' });
@@ -35,9 +35,9 @@ describe('Testing POST /api/login', () => {
   it('Verify if when called without data, return status code 400 with JSON { message: "Campos inválidos" }', async () => {
     await frisby.post(`${URL}api/login`, {
       body: {
-        email: "",
-        password: ""
-      }
+        email: '',
+        password: '',
+      },
     })
       .expect('status', 400)
       .expect('json', { message: 'Campos inválidos' });
@@ -47,20 +47,20 @@ describe('Testing POST /api/login', () => {
     await frisby.post(`${URL}api/login`, {
       body: {
         email: 'example@example.com',
-        password: '123456'
-      }
+        password: '123456',
+      },
     })
-    .expect('status', 200)
-    .then((responseLogin) => {
-      const { body } = responseLogin;
-      const result = JSON.parse(body);
-      const { token } = result;
+      .expect('status', 200)
+      .then((responseLogin) => {
+        const { body } = responseLogin;
+        const result = JSON.parse(body);
+        const { token } = result;
 
-      expect(token.length).toBe(168);
-      expect(jwt.verify(token, JWT_SECRET, (err) => {
-        if(err) return false
-        return true
-      })).toBe(true)
-    });
+        expect(token.length).toBe(168);
+        expect(jwt.verify(token, JWT_SECRET, (err) => {
+          if (err) return false;
+          return true;
+        })).toBe(true);
+      });
   });
 });
