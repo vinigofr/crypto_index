@@ -1,26 +1,34 @@
-# Boas vindas ao projeto Crypto Index!
+<h1 style="text-align: center">Boas vindas ao projeto Crypto Index!<h1>
 
-## Desenvolvimento
+Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk**](https://www.coindesk.com/).
 
-Para desenvolvimento desde projeto, foi utilizada a A API externa da [**CoinDesk**](https://www.coindesk.com/).
 
-## Para rodar o projeto localmente em sua maquina, sera necessario ter instalado:
+# Sumário
+
+- [Requisitos necessários](#requisitos)
+- [Como rodar em sua maquina](#como-rodar-em-sua-maquina)
+- [Endpoints da aplicação](#endpoints)
+
+# Requisitos:
+
+## Para rodar o projeto localmente em sua maquina, será necessário ter instalado:
 ### 1. Node.Js LTS
 ### 2. NPM (Node Package Manager)
 ### 3. Git (Ferramenta de versionamento)
-
 ---
+# Como rodar em sua maquina
 
 ## Passo a passo de como inicializar a aplicação:
-### 1. Crie uma pasta local e utilize o nome que desejar e abra com o terminal do seu sistema operacional.
+### 1. Crie uma pasta local e utilize o nome que desejar. Abra-a com o terminal do seu sistema operacional.
 ### 2. Digite `git clone git@github.com:vinigofr/crypto_index.git` e aguarde o download.
 
-## Endpoints da aplicacao:
+# Endpoints:
+
 ### 1. GET - `http://localhost:4000/helloworld` -> Endpoint teste para verificar se o servidor esta inicializado.
 
 ### 2. POST - `http://localhost:4000/api/login` -> Endpoint de login que deve receber **email** e **senha** validos para retornar um token.
 
-- Email com padrao "nome@prefixo.com" e senha com seis caracteres, todos numericos.
+- Email com padrão "nome@prefixo.com" e senha com seis caracteres, todos numéricos.
 ```JSON
 {
   "email": "example@example.com",
@@ -33,8 +41,8 @@ Para desenvolvimento desde projeto, foi utilizada a A API externa da [**CoinDesk
   "token": "TOKEN AQUI"
 }
 ```
-### 3. GET - `http://localhost:4000/api/crypto/btc` -> Endpoint que retorna a cotacao do Bitcoin nas moedas **USD** (United States Dolar), **BRL** (Real Brasileiro), **EUR** (Euro) e **CAD** (Dolar Canadense)
-- Este endpoint espera como parametro um token de autorizacao que deve ser enviado no cabecalho da requisicao:
+### 3. GET - `http://localhost:4000/api/crypto/btc` -> Endpoint que retorna a cotação do Bitcoin nas moedas **USD** (United States Dólar), **BRL** (Real Brasileiro), **EUR** (Euro) e **CAD** (Dólar Canadense)
+- Este endpoint espera como parâmetro um token de autorização que deve ser enviado no cabeçalho da requisição:
 ```JSON
 {
   "headers": {
@@ -42,7 +50,7 @@ Para desenvolvimento desde projeto, foi utilizada a A API externa da [**CoinDesk
   }
 }
 ```
-- Caso ocorra tudo como esperado, a aplicacao deve retornar um JSON semelhante ao conteudo abaixo:
+- Caso ocorra tudo como esperado, a aplicação deve retornar um JSON semelhante ao conteúdo abaixo:
 ```JSON
 /* Retorno do endpoint `/api/crypto/btc` */
 {
@@ -87,9 +95,9 @@ Para desenvolvimento desde projeto, foi utilizada a A API externa da [**CoinDesk
 }
 ```
 
-### 4. POST - `http://localhost:4000/api/crypto/btc` -> Endpoint para edicao da cotacao das moedas **BRL**, **EUR** e **CAD**:
-- Este endpoint espera como um dos parametros, um token de autorizacao que deve ser enviado no cabecalho da requisicao.
-- Devem ser tambem enviados os dados currency e value, onde currency eh o codigo da moeda e value eh o valor.
+### 4. POST - `http://localhost:4000/api/crypto/btc` -> Endpoint para edição da cotação das moedas **BRL**, **EUR** e **CAD**:
+- Este endpoint espera como um dos parâmetros, um token de autorização que deve ser enviado no cabeçalho da requisição.
+- Devem ser também enviados os dados currency e value, onde currency eh o código da moeda e value eh o valor.
 - OBS: **value** deve ser um **inteiro**  
 ```JSON
 {
@@ -97,15 +105,15 @@ Para desenvolvimento desde projeto, foi utilizada a A API externa da [**CoinDesk
   "value": "6" /* OU */ 6
 }
 ```
-- Caso ocorra tudo como esperado, a aplicacao deve retornar um JSON semelhante ao conteudo abaixo:
+- Caso ocorra tudo como esperado, a aplicação deve retornar um JSON semelhante ao conteúdo abaixo:
 ```JSON
 {
   "message": "Valor alterado com sucesso!"
 }
 ```
 
-### 5. GET `http://localhost:4000/api/crypto/btc/base` -> Endpoint que retorna a cotacao atual das moedas salvas no arquivo currencies.json:
-- Este endpoint requer como parametro apenas o token no cabeçalho da requisicao.
+### 5. GET `http://localhost:4000/api/crypto/btc/base` -> Endpoint que retorna a cotação atual das moedas salvas no arquivo currencies.json:
+- Este endpoint requer como parâmetro apenas o token no cabeçalho da requisição.
 - Retorno: 
 ```JSON
 {
@@ -115,7 +123,7 @@ Para desenvolvimento desde projeto, foi utilizada a A API externa da [**CoinDesk
 }
 ```
 
-### 6. `http://localhost:4000/` -> Qualquer requisicao feita para rotas inexistentes retornará um `STATUS CODE 404 - NOT FOUND`:
+### 6. `http://localhost:4000/` -> Qualquer requisição feita para rotas inexistentes retornará um `STATUS CODE 404 - NOT FOUND`:
 ```JSON
 {
   "message": "Endpoint não encontrado"
