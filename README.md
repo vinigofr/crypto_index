@@ -60,7 +60,7 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 
 ## Passo a passo de como inicializar a aplicação:
 ### 1. Crie uma pasta local e utilize o nome que desejar. Abra-a com o terminal do seu sistema operacional.
-### 2. Digite `git clone git@github.com:vinigofr/crypto_index.git` e aguarde o download.
+### 2. Digite `git clone git@github.com:vinigofr/crypto_index.git` e aguarde o download ou baixe o .zip direto no GitHub.
 
 # Endpoints:
 
