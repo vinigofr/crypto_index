@@ -12,6 +12,7 @@ function apiLogin({ email, password }) {
     })
     .then((res) => {
       localStorage.setItem('token', res.data.token);
+      return true;
     })
     .catch((error) => error.response.data)
     .catch(() => ({ CONN_ERR }));
