@@ -1,11 +1,11 @@
 require('dotenv').config();
 const frisby = require('frisby');
 const jwt = require('jsonwebtoken');
+const PORT = process.env.PORT || 4000;
 
-const URL = 'http://localhost:4000/';
+const URL = `http://localhost:${PORT}/`;
 const { app } = require('../app');
 
-const { PORT } = process.env;
 jest.mock('../api/fetchBtcCurrency');
 
 const { JWT_SECRET } = process.env;

@@ -1,10 +1,9 @@
 require('dotenv').config();
 const frisby = require('frisby');
+const PORT = process.env.PORT || 4000;
 
-const URL = 'http://localhost:4000/';
+const URL = `http://localhost:${PORT}/`;
 const { app } = require('../app');
-
-const { PORT } = process.env;
 
 describe('Testing unknown routes', () => {
   beforeAll((done) => {

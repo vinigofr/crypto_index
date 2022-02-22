@@ -1,7 +1,7 @@
 require('dotenv').config();
 const frisby = require('frisby');
 
-const { PORT } = process.env;
+const PORT = process.env.PORT || 4000;
 const { JWT_SECRET } = process.env;
 const URL = `http://localhost:${PORT}/`;
 const fs = require('fs');
