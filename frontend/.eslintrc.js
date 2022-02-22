@@ -27,5 +27,6 @@ module.exports = {
       depth: 3,
     }],
     'react/prop-types': 0,
+    'linebreak-style': 0,
   },
 };
