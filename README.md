@@ -59,10 +59,20 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 # Como rodar em sua maquina
 
 ## Passo a passo de como inicializar a aplicação:
-### 1. Crie uma pasta local e utilize o nome que desejar. Abra-a com o terminal do seu sistema operacional.
+### 1. Caso prefira, crie uma pasta local e utilize o nome que desejar. Abra-a com o terminal do seu sistema operacional.
 ### 2. Digite `git clone git@github.com:vinigofr/crypto_index.git` e aguarde o download ou baixe o .zip direto no GitHub.
+### **EXTRA**: Caso esteja usando um **SO Linux** baseado em **Ubuntu** e que use **gnome-shell**, voce pode executar diretamente da raiz do projeto o comando `./initialize.sh` que fara tudo o que o tópico 3 descreve.
+### 3. Agora no seu terminal:
+  - ### 3.1 Digite `cd crypto_index` para ir para a pasta criada/baixada.
+  - ### 3.2 Acesse a pasta `backend` e digite terminal`npm install` para instalar as dependências do **backend**.
+  - ### 3.3 Ainda na pasta **backend**, digite `npm start`.
+  - ### 3.4 Acesse a pasta `frontend` e digite `npm install` para instalar as dependências do **frontend**.
+  - ### 3.5 Digite `npm start` para iniciar a pagina.
+  - ### 3.6 Por padrão, o React abre a pagina `http://localhost:3000/`. Porem, para melhor experiencia, é recomendado que você abra o navegador e digite `http://localhost:3000/login`.
 
 # Endpoints:
+
+## Backend:
 
 ### 1. GET - `http://localhost:4000/helloworld` -> Endpoint teste para verificar se o servidor esta inicializado.
 
@@ -169,6 +179,16 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
   "message": "Endpoint não encontrado"
 }
 ```
+
+## Frontend:
+
+### 1. `http://localhost:3000/login` -> Endpoint de login que deve receber **email** e **senha** validos para retornar um token que eh salvo no `localStorage`.
+
+### 2. `http://localhost:3000/` -> Endpoint que retorna a pagina inicial/principal do **frontend**.
+
+### 3. `http://localhost:3000/update` -> Endpoint que retorna a pagina atualização das moedas salvas no **backend**.
+
+### 4. `http://localhost:3000/<rota-inexistente>` -> Qualquer requisição feita para rotas inexistentes retornará uma pagina de `Not Found`.:
 
 # Sobre os testes:
 
