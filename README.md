@@ -28,11 +28,12 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 - [Requisitos necessários](#requisitos)
 - [Como rodar em sua maquina](#como-rodar-em-sua-maquina)
 - [Endpoints da aplicação](#endpoints)
+- [Testes](#testes)
 
 # Observações:
-### - O arquivo `.ENV` ja esta na pasta backend apenas para facilitar a execução do projeto e para fins didaticos. Entretanto essa pratica **JAMAIS** deve ser utilizada em produção. Voce tem total liberdade para alterar o `.ENV` como bem entender.
+### - O arquivo `.ENV` já está na pasta `backend` apenas para facilitar a execução do projeto e para fins didáticos. Entretanto essa prática **JAMAIS** deve ser utilizada em produção. Você tem total liberdade para alterar o `.ENV` como bem entender.
 
-### - Antes de executar o projeto, verifique se nenhuma das postas (3000/Front e 4000/Back) esta em uso por outras aplicações. Caso esteja, feche os servidores que as usam ou altere o arquivo `.ENV`.
+### - Antes de executar o projeto, verifique se nenhuma das portas (3000/Front e 4000/Back) está em uso por outras aplicações. Caso esteja, feche os servidores que as usam ou altere o arquivo `.ENV`.
 
 # Tecnologias utilizadas:
 
@@ -60,29 +61,29 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 ## Para rodar o projeto localmente em sua maquina, será necessário ter instalado:
 ### 1. Node.Js LTS
 ### 2. NPM (Node Package Manager)
-### 3. Git (Ferramenta de versionamento)
+### 3. Opcional: Git (Ferramenta de versionamento)
 
-# Como rodar em sua maquina
+# Como rodar em sua máquina
 
 ## Passo a passo de como inicializar a aplicação:
 ### 1. Caso prefira, crie uma pasta local e utilize o nome que desejar. Abra-a com o terminal do seu sistema operacional.
 ### 2. Digite `git clone git@github.com:vinigofr/crypto_index.git` e aguarde o download ou baixe o .zip direto no GitHub.
-### **EXTRA**: Caso esteja usando um **SO Linux** baseado em **Ubuntu** e que use **gnome-shell**, voce pode executar diretamente da raiz do projeto o comando `./initialize.sh` que fara tudo o que o tópico 3 descreve.
+### **EXTRA**: Caso esteja usando um **SO Linux** baseado em **Ubuntu** e que possua **gnome-shell**, você pode executar diretamente da raiz do projeto o comando `./initialize.sh` que fará tudo o que o tópico 3 descreve.
 ### 3. Agora no seu terminal:
-  - ### 3.1 Digite `cd crypto_index` para ir para a pasta criada/baixada.
-  - ### 3.2 Acesse a pasta `backend` e digite terminal`npm install` para instalar as dependências do **backend**.
-  - ### 3.3 Ainda na pasta **backend**, digite `npm start`.
+  - ### 3.1 Digite `cd crypto_index` para ir para a baixada.
+  - ### 3.2 Acesse a pasta `backend` e digite terminal `npm install` para instalar as dependências do **backend**.
+  - ### 3.3 Ainda na pasta **backend**, digite `npm start` e aguarde a inicialização do servidor.
   - ### 3.4 Acesse a pasta `frontend` e digite `npm install` para instalar as dependências do **frontend**.
-  - ### 3.5 Digite `npm start` para iniciar a pagina.
+  - ### 3.5 Digite `npm start` para iniciar a página.
   - ### 3.6 Por padrão, o React abre a pagina `http://localhost:3000/`. Porem, para melhor experiencia, é recomendado que você abra o navegador e digite `http://localhost:3000/login`.
 
 # Endpoints:
 
 ## Backend:
 
-### 1. GET - `http://localhost:4000/helloworld` -> Endpoint teste para verificar se o servidor esta inicializado.
+### 1. GET - `http://localhost:4000/helloworld` -> Endpoint teste para verificar se o servidor está inicializado.
 
-### 2. POST - `http://localhost:4000/api/login` -> Endpoint de login que deve receber **email** e **senha** validos para retornar um token.
+### 2. POST - `http://localhost:4000/api/login` -> Endpoint de login que deve receber **email** e **senha** válidos para retornar um token.
 
 - Email com padrão "nome@prefixo.com" e senha com seis caracteres, todos numéricos.
 ```JSON
@@ -153,7 +154,7 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 
 ### 4. POST - `http://localhost:4000/api/crypto/btc` -> Endpoint para edição da cotação das moedas **BRL**, **EUR** e **CAD**:
 - Este endpoint espera como um dos parâmetros, um token de autorização que deve ser enviado no cabeçalho da requisição.
-- Devem ser também enviados os dados currency e value, onde currency eh o código da moeda e value eh o valor.
+- Devem ser também enviados os dados `currency` e `value`, onde currency é o código da moeda e value é o valor.
 - OBS: **value** deve ser um **inteiro**  
 ```JSON
 {
@@ -188,15 +189,15 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 
 ## Frontend:
 
-### 1. `http://localhost:3000/login` -> Endpoint de login que deve receber **email** e **senha** validos para retornar um token que eh salvo no `localStorage`.
+### 1. `http://localhost:3000/login` -> Endpoint de login que deve receber **email** e **senha** válidos para retornar um token que é salvo no `localStorage`.
 
-### 2. `http://localhost:3000/` -> Endpoint que retorna a pagina inicial/principal do **frontend**.
+### 2. `http://localhost:3000/` -> Endpoint que retorna a página inicial/principal do **frontend**.
 
-### 3. `http://localhost:3000/update` -> Endpoint que retorna a pagina atualização das moedas salvas no **backend**.
+### 3. `http://localhost:3000/update` -> Endpoint que retorna a página atualização das moedas salvas no **backend**.
 
 ### 4. `http://localhost:3000/<rota-inexistente>` -> Qualquer requisição feita para rotas inexistentes retornará uma pagina de `Not Found`.:
 
-# Sobre os testes:
+# Testes:
 
 ## Para realização de testes no backend:
 ### 1. Acesse a pasta `backend` e execute o comando `npm test`:
