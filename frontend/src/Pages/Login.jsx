@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiLogin } from '../Api/CryptoApi';
+import useMessage from '../Hooks/useMessage';
 import Button from '../StyledComponents/Button';
 import Input from '../StyledComponents/Input';
 
@@ -8,23 +9,21 @@ function Login() {
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
   const [error, setError] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState('');
-
+  const { setMessage, redirectMessage } = useMessage();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const result = await apiLogin({ email, password });
-
     if (result.CONN_ERR) {
       setError(true);
-      setErrorMessage(result.CONN_ERR);
+      setMessage({ message: result.CONN_ERR });
       return;
     }
 
     if (result.message) {
-      setErrorMessage(result.message);
+      setMessage({ message: result.message });
       setError(true);
     } else {
       navigate('/');
@@ -54,9 +53,13 @@ function Login() {
         </label>
         <Button type="submit">Entrar</Button>
       </form>
-      <div className="message-container">
-        { error && <p>{errorMessage}</p> }
-      </div>
+      {
+        error && (
+          <div className="error-message">
+            {redirectMessage}
+          </div>
+        )
+      }
     </div>
   );
 }
