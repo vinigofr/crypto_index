@@ -18,7 +18,8 @@ code {
     monospace;
 }
 
-.message-container p {
+.message-container p,
+.error-message {
   font-size: 1.5rem;
   color: #fff;
   text-align: center;
