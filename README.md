@@ -200,9 +200,7 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 # Testes:
 
 ## Para realização de testes no backend:
-### 1. Acesse a pasta `backend` e execute o comando `npm test`:
-- imagem de um teste aqui
+### 1. Acesse a pasta `backend` e execute o comando `npm test`.
 
 ### 2. Para realizar a verificação de cobertura de testes:
 - Ainda na pasta `backend` execute `npm run coverage`
-- Imagem do teste aqui
