@@ -90,10 +90,18 @@ function Home() {
           ))
         )}
       </div>
-      <div className="message-container">
-        { error && <p>{redirectMessage}</p>}
-        { loading && <p>Carregando...</p> }
-      </div>
+      { error && (
+        <div className="error-message">
+          <p>{redirectMessage}</p>
+        </div>
+      )}
+      {
+        loading && (
+        <div className="message-container">
+          <p>Carregando...</p>
+        </div>
+        )
+      }
     </div>
   );
 }
