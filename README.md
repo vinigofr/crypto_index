@@ -23,10 +23,16 @@ Para o desenvolvimento desde projeto, foi utilizada a API externa da [**CoinDesk
 
 # Sumário
 
+- [Observações](#observações)
 - [Tecnologias e bibliotecas utilizadas](#tecnologias-utilizadas)
 - [Requisitos necessários](#requisitos)
 - [Como rodar em sua maquina](#como-rodar-em-sua-maquina)
 - [Endpoints da aplicação](#endpoints)
+
+# Observações:
+### - O arquivo `.ENV` ja esta na pasta backend apenas para facilitar a execução do projeto e para fins didaticos. Entretanto essa pratica **JAMAIS** deve ser utilizada em produção. Voce tem total liberdade para alterar o `.ENV` como bem entender.
+
+### - Antes de executar o projeto, verifique se nenhuma das postas (3000/Front e 4000/Back) esta em uso por outras aplicações. Caso esteja, feche os servidores que as usam ou altere o arquivo `.ENV`.
 
 # Tecnologias utilizadas:
 
