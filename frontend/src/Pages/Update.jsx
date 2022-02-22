@@ -123,9 +123,11 @@ function Update() {
           Atualizar
         </Button>
       </form>
-      <div className="message-container">
-        { error && <p>{redirectMessage}</p> }
-      </div>
+      { error && (
+        <div className="message-container">
+          <p>{redirectMessage}</p>
+        </div>
+      )}
     </div>
   );
 }
