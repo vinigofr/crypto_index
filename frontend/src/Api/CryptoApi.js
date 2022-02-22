@@ -5,7 +5,7 @@ const BASE_URL = 'http://localhost:4000/api/';
 const CONN_ERR = 'Erro ao conectar-se com o servidor.';
 
 function apiLogin({ email, password }) {
-  const response = axios
+  return axios
     .post(`${BASE_URL}login`, {
       email,
       password,
@@ -16,11 +16,10 @@ function apiLogin({ email, password }) {
     })
     .catch((error) => error.response.data)
     .catch(() => ({ CONN_ERR }));
-  return response;
 }
 
 function apiGetCurrency(token) {
-  const response = axios
+  return axios
     .get(`${BASE_URL}crypto/btc`, {
       headers: {
         Authorization: token,
@@ -29,11 +28,10 @@ function apiGetCurrency(token) {
     .then((res) => formatApiResponse(res))
     .catch((error) => error.response.data)
     .catch(() => ({ CONN_ERR }));
-  return response;
 }
 
 function apiGetBaseCurrencies(token) {
-  const response = axios
+  return axios
     .get(`${BASE_URL}crypto/btc/base`, {
       headers: {
         Authorization: token,
@@ -42,7 +40,6 @@ function apiGetBaseCurrencies(token) {
     .then((res) => res.data)
     .catch((error) => error.response.data)
     .catch(() => ({ CONN_ERR }));
-  return response;
 }
 
 async function apiUpdateCurrency(token, data) {
